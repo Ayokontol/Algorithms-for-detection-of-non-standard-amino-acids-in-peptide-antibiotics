@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DATA_PREPARE_H
+#define DATA_PREPARE_H
 
 #include "combinatorial_method.h"
 #include "const.h"
@@ -8,9 +9,9 @@
 
 class DataPrepare {
 public:
-    size_t old_samples = 0;
+    long long old_samples = 0;
 
-    std::vector<size_t> Last_change;
+    std::vector<long long> Last_change;
 
     struct m_w {
         double m;           // m/z
@@ -20,7 +21,7 @@ public:
         m_w() {}
 
         bool operator<(const m_w& other) const {
-            if (abs(m - other.m) < e)
+            if (fabs(m - other.m) < e)
                 return false;
             return m < other.m;
         }
@@ -32,3 +33,5 @@ public:
     // Diff -- result vector of differences
     void make_differences(std::vector<std::vector<double> >& VM, std::vector<double>& Diff);
 };
+
+#endif

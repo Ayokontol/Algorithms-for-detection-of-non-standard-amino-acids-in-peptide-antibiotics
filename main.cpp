@@ -2,11 +2,11 @@
 #include <string>
 
 int main() {
-    std::ifstream ifs("data_glyco.txt"); //2
-    //std::ifstream ifs("data3.txt");      //1
+    //std::ifstream ifs("data_glyco.txt"); //2
+    std::ifstream ifs("data3.txt");      //1   //peptide data
     //std::ifstream ifs("test.txt");      //2
 
-    size_t k = 0;
+    long long k = 0;
     std::vector<std::vector<double> > VM;
     std::vector<std::vector<double> > VP;
 
@@ -17,8 +17,8 @@ int main() {
         double p, m;
 
         if (type == 1) {
-            size_t num;
-            size_t n;
+            long long num;
+            long long n;
 
             ifs >> num >> n;
 
@@ -29,7 +29,7 @@ int main() {
             std::vector<double> M; // m/z array
 
             double sum_p = 0;
-            for (size_t i = 0; i < n; ++i) {
+            for (long long i = 0; i < n; ++i) {
                 ifs >> m >> p;
                 P.push_back(p);
                 M.push_back(m);
@@ -88,7 +88,10 @@ int main() {
 
     Method method;
 
-    method.start_sampling(D, VM, VP);
+    if (IS_PARALLEL)
+        method.start_sampling_thread(D, VM, VP);
+    else
+        method.start_sampling(D, VM, VP);
 
     /*for (auto x : D)
         ofs << x << " ";

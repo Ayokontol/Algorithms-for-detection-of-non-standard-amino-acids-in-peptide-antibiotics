@@ -5,10 +5,10 @@ void NoncombinatorialMethod::ncomb_app_w(std::vector<std::vector<double>>& VP, s
 
     std::set<DataPrepare::m_w> M_W;
 
-    for (size_t k = 0; k < VP.size(); ++k) {
-        for (size_t i = 0; i < VP[k].size(); ++i)
-            for (size_t j = i + 1; j < VP[k].size(); ++j) {
-                double m = abs(VM[k][i] - VM[k][j]);
+    for (long long k = 0; k < (long long)VP.size(); ++k) {
+        for (long long i = 0; i < (long long)VP[k].size(); ++i)
+            for (long long j = i + 1; j < (long long)VP[k].size(); ++j) {
+                double m = fabs(VM[k][i] - VM[k][j]);
                 double w = VP[k][i] * VP[k][j];
 
                 if (m < 1 - e || m > MAX_DIFF)
@@ -31,13 +31,13 @@ void NoncombinatorialMethod::ncomb_app_w(std::vector<std::vector<double>>& VP, s
     for (auto x : M_W)
         out_w << x.m << " " << x.w << std::endl;
 
-    D.resize(STATS_SIZE);
+    D.resize(D_size);
 
-    for (size_t i = 0; i < D_size; ++i)
+    for (long long i = 0; i < D_size; ++i)
         D[i] = V[i].m;
 
     std::ofstream out_w2("out_m_w_stats.txt");
-    for (size_t i = 0; i < STATS_SIZE; ++i)
+    for (long long i = 0; i < STATS_SIZE; ++i)
         out_w2 << V[i].m << " " << V[i].w << std::endl;
 }
 
@@ -46,10 +46,10 @@ void NoncombinatorialMethod::ncomb_app(std::vector<std::vector<double>>& VP, std
 
     std::set<DataPrepare::m_w> M_W;
 
-    for (size_t k = 0; k < VP.size(); ++k) {
-        for (size_t i = 0; i < VP[k].size(); ++i)
-            for (size_t j = i + 1; j < VP[k].size(); ++j) {
-                double m = abs(VM[k][i] - VM[k][j]);
+    for (long long k = 0; k < (long long)VP.size(); ++k) {
+        for (long long i = 0; i < (long long)VP[k].size(); ++i)
+            for (long long j = i + 1; j < (long long)VP[k].size(); ++j) {
+                double m = fabs(VM[k][i] - VM[k][j]);
 
                 if (m < 1 - e || m > MAX_DIFF)
                     continue;
@@ -73,10 +73,10 @@ void NoncombinatorialMethod::ncomb_app(std::vector<std::vector<double>>& VP, std
 
     D.resize(STATS_SIZE);
 
-    for (size_t i = 0; i < D_size; ++i)
+    for (long long i = 0; i < D_size; ++i)
         D[i] = V[i].m;
 
     std::ofstream out_w2("out_m_stats.txt");
-    for (size_t i = 0; i < STATS_SIZE; ++i)
+    for (long long i = 0; i < STATS_SIZE; ++i)
         out_w2 << V[i].m << " " << V[i].w << std::endl;
 }

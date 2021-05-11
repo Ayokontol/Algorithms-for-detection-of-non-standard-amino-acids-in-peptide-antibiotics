@@ -1,4 +1,5 @@
-#pragma once
+#ifndef NONCOMB_METHOD_H
+#define NONCOMB_METHOD_H
 
 #include "data_prepare.h"
 
@@ -18,3 +19,5 @@ public:
     // Noncombinatorial approach with weight
     void ncomb_app(std::vector<std::vector<double>>& VP, std::vector<std::vector<double>>& VM, std::vector<double>& D);
 };
+
+#endif
